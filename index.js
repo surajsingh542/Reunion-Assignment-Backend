@@ -16,8 +16,18 @@ app.use(express.json());
 // pass form data
 app.use(express.urlencoded({ extended: true }));
 
+let allowedOrigins = ["http://localhost:3000"];
+
 // Cors middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 
 // Routes
 app.use("/api", userRoutes);
