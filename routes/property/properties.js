@@ -28,10 +28,10 @@ const upload = multer({ storage });
 // route /api/property
 propertyRoutes.post(
   "/property",
+  upload.single("property_Img"),          
   addPropertyValidation,
   validationErrorHandler,
   isLogin,
-  upload.single("property_Img"),
   addPropertyCtrl
 );
 
@@ -41,11 +41,11 @@ propertyRoutes.get("/list-properties", getPropertiesCtrl);
 // route /api/property/:id
 propertyRoutes.patch(
   "/property/:id",
+  upload.single("property_Img"),
   updatePropertyValidation,
   validationErrorHandler,
   isLogin,
   isListedByMe,
-  upload.single("property_Img"),
   updatePropertyCtrl
 );
 
